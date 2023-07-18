@@ -13,6 +13,8 @@ public class Picnic
     @Option(names = { "-h", "--help" }, usageHelp = true, description = "display a help message")
     private boolean helpRequested = false;
 
+    @Parameters(index = "0..*", paramLabel = "items", description = "A list of items to bring")
+    private String[] items;
 
 
     public static void main( String[] args )
@@ -28,7 +30,23 @@ public class Picnic
         init_app.run();
     }
 
-    public static void run() {
-        System.out.println( "Hello World!" );
+    public void run() {
+
+        if (items.length == 1) {
+        String item1 = items[0];
+
+        System.out.printf("You are bringing %s\n", item1);
+
+        } else {
+
+            String lastItem = items[items.length - 1];
+            String concat = items[0];
+            for (int i = 1; i < items.length - 1; i++) {
+                concat += ", " + items[i];
+            }
+
+            System.out.printf("You are bringing %s and %s\n", concat, lastItem);
+        }
+
     }
 }
