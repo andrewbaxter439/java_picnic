@@ -5,6 +5,8 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
+import java.util.Arrays;
+
 
 @Command(name = "Picnic", description = "A handy, dandy app for doing whatever you like")
 public class Picnic
@@ -12,6 +14,9 @@ public class Picnic
 
     @Option(names = { "-h", "--help" }, usageHelp = true, description = "display a help message")
     private boolean helpRequested = false;
+
+    @Option(names= {"-s", "-sorted"}, description = "Sort strings")
+    boolean sort;
 
     @Parameters(index = "0..*", paramLabel = "items", description = "A list of items to bring")
     private String[] items;
@@ -39,10 +44,14 @@ public class Picnic
 
         } else {
 
+            if (sort) {
+                Arrays.sort(items);
+            }
+
             String lastItem = items[items.length - 1];
-            String concat = items[0];
+            StringBuilder concat = new StringBuilder(items[0]);
             for (int i = 1; i < items.length - 1; i++) {
-                concat += ", " + items[i];
+                concat.append(", ").append(items[i]);
             }
 
             System.out.printf("You are bringing %s and %s\n", concat, lastItem);

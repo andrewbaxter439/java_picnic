@@ -70,7 +70,7 @@ public class PicnicTest
     @Test
     public void testTwoSorted() {
 
-        Picnic.main(new String[]{"oranges", "cupcakes"});
+        Picnic.main(new String[]{"oranges", "cupcakes", "-sorted"});
         Assertions.assertEquals(
                 "You are bringing cupcakes and oranges",
                 outputStreamCaptor.toString().trim()
@@ -80,7 +80,7 @@ public class PicnicTest
     @Test
     public void testMoreThanTwoSorted() {
 
-        Picnic.main(new String[]{"pineapples", "cupcakes", "pomegranate juice"});
+        Picnic.main(new String[]{"pineapples", "cupcakes", "pomegranate juice", "-sorted"});
         Assertions.assertEquals(
                 "You are bringing cupcakes, pineapples and pomegranate juice",
                 outputStreamCaptor.toString().trim()
