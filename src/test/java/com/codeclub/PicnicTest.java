@@ -37,4 +37,54 @@ public class PicnicTest
         Picnic.main(new String[]{"-h"});
         Assertions.assertTrue(outputStreamCaptor.toString().contains("Usage"));
     }
+    @Test
+    public void testOne() {
+
+        Picnic.main(new String[]{"sandwiches"});
+        Assertions.assertEquals(
+                "You are bringing sandwiches",
+                outputStreamCaptor.toString().trim()
+        );
+    }
+
+    @Test
+    public void testTwo() {
+
+        Picnic.main(new String[]{"apple juice", "oranges"});
+        Assertions.assertEquals(
+                "You are bringing apple juice and oranges",
+                outputStreamCaptor.toString().trim()
+        );
+    }
+
+    @Test
+    public void testMoreThanTwo() {
+
+        Picnic.main(new String[]{"pineapples", "cupcakes", "pomegranate juice"});
+        Assertions.assertEquals(
+                "You are bringing pineapples, cupcakes and pomegranate juice",
+                outputStreamCaptor.toString().trim()
+        );
+    }
+
+    @Test
+    public void testTwoSorted() {
+
+        Picnic.main(new String[]{"oranges", "cupcakes"});
+        Assertions.assertEquals(
+                "You are bringing cupcakes and oranges",
+                outputStreamCaptor.toString().trim()
+        );
+    }
+
+    @Test
+    public void testMoreThanTwoSorted() {
+
+        Picnic.main(new String[]{"pineapples", "cupcakes", "pomegranate juice"});
+        Assertions.assertEquals(
+                "You are bringing cupcakes, pineapples and pomegranate juice",
+                outputStreamCaptor.toString().trim()
+        );
+    }
+
 }
