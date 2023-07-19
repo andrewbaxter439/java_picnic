@@ -50,9 +50,9 @@ public class PicnicTest
     @Test
     public void testTwo() {
 
-        Picnic.main(new String[]{"apple juice", "oranges"});
+        Picnic.main(new String[]{"oranges", "apple juice"});
         Assertions.assertEquals(
-                "You are bringing apple juice and oranges",
+                "You are bringing oranges and apple juice",
                 outputStreamCaptor.toString().trim()
         );
     }

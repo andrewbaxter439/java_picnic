@@ -5,6 +5,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -37,25 +38,27 @@ public class Picnic
 
     public void run() {
 
-        if (items.length == 1) {
-        String item1 = items[0];
+        StringBuilder sentence = new StringBuilder("You are bringing ");
 
-        System.out.printf("You are bringing %s\n", item1);
-
-        } else {
-
-            if (sort) {
-                Arrays.sort(items);
-            }
-
-            String lastItem = items[items.length - 1];
-            StringBuilder concat = new StringBuilder(items[0]);
-            for (int i = 1; i < items.length - 1; i++) {
-                concat.append(", ").append(items[i]);
-            }
-
-            System.out.printf("You are bringing %s and %s\n", concat, lastItem);
+        if (sort) {
+            Arrays.sort(items);
         }
+
+        ArrayList<String> words = new ArrayList<String>(Arrays.asList(items));
+
+        String lastItem = words.remove(words.size() - 1);
+
+
+        if (words.size() > 0) {
+
+            sentence.append(String.join(", ", words));
+
+            sentence.append(" and ");
+        }
+
+        sentence.append(lastItem);
+
+        System.out.println(sentence);
 
     }
 }
